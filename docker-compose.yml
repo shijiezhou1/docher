@@ -4,7 +4,7 @@ services:
         container_name: nginx_container
         build: ./nginx
         ports: 
-            - 8000:80
+            - 80:80
         links: 
             - nodeapp:app
 
@@ -13,5 +13,5 @@ services:
         build: ./nodeapp
         ports: 
             - 3000:3000
-        
-    
+        environment: 
+            - APP_NAME=nodeapp
