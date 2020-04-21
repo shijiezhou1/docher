@@ -1,0 +1,17 @@
+version : '3'
+services:
+    nginx:
+        container_name: nginx_container
+        build: ./nginx
+        ports: 
+            - 8000:80
+        links: 
+            - nodeapp:app
+
+    nodeapp:
+        container_name: nodeapp_container
+        build: ./nodeapp
+        ports: 
+            - 3000:3000
+        
+    
