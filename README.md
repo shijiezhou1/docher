@@ -7,7 +7,7 @@
 
 # MULTI-COMMAND STYLE
 
-Dockerfile is used to create a Docker image, and link whatever you need to the server
+`Dockerfile` is used to create a Docker image, and link whatever you need to the server
 
 ## BUILD NODEAPP
 
@@ -39,7 +39,7 @@ docker run -p 8000:80 --link node-app:app --name nginx-proxy foo/nginx
 
 # ONE-COMMAND STYLE
 
-By the way, docker-compose.yml is used to glue multiple Docker images together or to set parameters for a single Docker image to have a working solution.
+By the way, `docker-compose.yml` is used to glue multiple Docker images together or to set parameters for a single Docker image to have a working solution.
 
 
 ```
@@ -50,3 +50,28 @@ docker-compose build --force-rm
 docker-compose up -d
 ```
 
+# EXPRESS
+
+```
+docker build --tag whatevername:tag .
+```
+
+```
+docker container run -p 4010:4000 --name helloworld -e "name=America" -d whatevername:tag
+```
+
+```
+docker container run -p 4020:4000 --name customized -e "name=Canada" -d whatevername:tag
+```
+
+```
+docker container run -p 4030:4000 --name backup -e "name=Mexico" -d whatevername:tag
+```
+
+```
+docker build -t expressnginx:tag .
+```
+
+```
+docker container run -p 4000:80 -d expressnginx:tag
+```
