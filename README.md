@@ -76,9 +76,37 @@ docker build -t expressnginx:tag .
 docker container run -p 4000:80 -d expressnginx:tag
 ```
 
+# MYSQL
+
+## Backup
+
+```
+docker exec CONTAINER /usr/bin/mysqldump -u root --password=root DATABASE > backup.sql
+```
+
+## Restore
+
+```
+cat backup.sql | docker exec -i CONTAINER /usr/bin/mysql -u root --password=root DATABASE
+```
+
 # POSGRES
 
+## BACKUP
+
+```
+docker exec -t your-db-container pg_dumpall -c -U postgres > dump_`date +%d-%m-%Y"_"%H_%M_%S`.sql
+```
+
+## RESTORE
+
+```
+cat your_dump.sql | docker exec -i your-db-container psql -U postgres
+```
+
+```
 docker run --name postgres-docker -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d postgres
+```
 
 // login
 

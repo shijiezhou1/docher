@@ -1,31 +1,43 @@
 version : '3'
 services:
-    nginx:
-        container_name: nginx_container
-        build: ./nginx
-        ports: 
-            - 80:80
-        links: 
-            - nodeapp:app
+    # nginx:
+    #     container_name: nginx_container
+    #     build: ./nginx
+    #     ports: 
+    #         - 80:80
+    #     links: 
+    #         - nodeapp:app
 
-    nodeapp:
-        container_name: nodeapp_container
-        build: ./nodeapp
-        ports: 
-            - 3000:3000
-        environment: 
-            - APP_NAME=nodeapp
+    # nodeapp:
+    #     container_name: nodeapp_container
+    #     build: ./nodeapp
+    #     ports: 
+    #         - 3000:3000
+    #     environment: 
+    #         - APP_NAME=nodeapp
     
-    postgres:
-        image: postgres:latest
-        container_name: postgres_container
+    # postgres:
+    #     image: postgres:latest
+    #     container_name: postgres_container
+    #     restart: always
+    #     expose:
+    #         - "5432" # expose to outside world
+    #     ports: 
+    #         - "5432:5432"
+    #     environment: 
+    #         - POSTGRES_PASSWORD=password
+    #     volumes: 
+    #         - "./db/data:/var/lib/postgres/data"
+    #         - "./db/init:/docker-entrypoint-initdb.d"
+
+    mysql:
+        image: mysql:latest
+        container_name: mysql_container
         restart: always
-        expose:
-            - "5432" # expose to outside world
-        ports: 
-            - "5432:5432"
         environment: 
-            - POSTGRES_PASSWORD=password
-        volumes: 
-            - "./db/data:/var/lib/postgres/data:rw"
-            - "./db/init:/docker-entrypoint-initdb.d:rw"
+            - MYSQL_ROOT_PASSWORD=password
+            - MYSQL_DATABASE=food
+        ports:
+            - "3306:3306"
+        volumes:
+            - "./mysql:/var/lib/mysql:rw"
