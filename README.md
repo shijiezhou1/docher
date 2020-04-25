@@ -75,3 +75,34 @@ docker build -t expressnginx:tag .
 ```
 docker container run -p 4000:80 -d expressnginx:tag
 ```
+
+# POSGRES
+
+docker run --name postgres-docker -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d postgres
+
+// login
+
+```
+psql -U postgres
+```
+
+See user permission
+
+```
+\du
+```
+
+List all database
+
+```
+\l
+```
+Connect to database
+
+```
+\c test 
+```
+
+```
+\dt
+```
