@@ -1,34 +1,34 @@
 version : '3'
 services:
-    # nginx:
-    #     container_name: nginx_container
-    #     build: ./nginx
-    #     ports: 
-    #         - 80:80
-    #     links: 
-    #         - nodeapp:app
+    nginx:
+        container_name: nginx_container
+        build: ./nginx
+        ports: 
+            - 80:80
+        links: 
+            - nodeapp:app
 
-    # nodeapp:
-    #     container_name: nodeapp_container
-    #     build: ./nodeapp
-    #     ports: 
-    #         - 3000:3000
-    #     environment: 
-    #         - APP_NAME=nodeapp
+    nodeapp:
+        container_name: nodeapp_container
+        build: ./nodeapp
+        ports: 
+            - 4000:4000
+        environment: 
+            - APP_NAME=nodeapp
     
-    # postgres:
-    #     image: postgres:latest
-    #     container_name: postgres_container
-    #     restart: always
-    #     expose:
-    #         - "5432" # expose to outside world
-    #     ports: 
-    #         - "5432:5432"
-    #     environment: 
-    #         - POSTGRES_PASSWORD=password
-    #     volumes: 
-    #         - "./db/data:/var/lib/postgres/data"
-    #         - "./db/init:/docker-entrypoint-initdb.d"
+    postgres:
+        image: postgres:latest
+        container_name: postgres_container
+        restart: always
+        expose:
+            - "5432" # expose to outside world
+        ports: 
+            - "5432:5432"
+        environment: 
+            - POSTGRES_PASSWORD=password
+        volumes: 
+            - "./db/data:/var/lib/postgres/data"
+            - "./db/init:/docker-entrypoint-initdb.d"
 
     mysql:
         image: mysql:latest
@@ -41,3 +41,13 @@ services:
             - "3306:3306"
         volumes:
             - "./mysql:/var/lib/mysql:rw"
+
+    grafana:
+        image: grafana/grafana:latest
+        container_name: grafana_container
+        restart: always
+        env_file:
+            - './grafana/.env.grafana'
+        user: "0"
+        ports: 
+            - 3000:3000

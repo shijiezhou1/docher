@@ -134,3 +134,9 @@ Connect to database
 ```
 \dt
 ```
+
+# GRAFANA
+
+user:admin
+password:admin
+
