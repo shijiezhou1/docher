@@ -8,13 +8,14 @@ services:
         links: 
             - nodeapp:app
 
-    # nodeapp:
-    #     container_name: nodeapp_container
-    #     build: ./nodeapp
-    #     ports: 
-    #         - 4000:4000
-    #     environment: 
-    #         - APP_NAME=nodeapp
+    nodeapp:
+        container_name: nodeapp_container
+        build: ./nodeapp
+        ports: 
+            - 4000:4000
+        environment: 
+            - APP_NAME=nodeapp
+            - PORT=4000
     
     # postgres:
     #     image: postgres:latest
