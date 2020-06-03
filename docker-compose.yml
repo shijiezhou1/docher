@@ -8,46 +8,48 @@ services:
         links: 
             - nodeapp:app
 
-    nodeapp:
-        container_name: nodeapp_container
-        build: ./nodeapp
-        ports: 
-            - 4000:4000
-        environment: 
-            - APP_NAME=nodeapp
+    # nodeapp:
+    #     container_name: nodeapp_container
+    #     build: ./nodeapp
+    #     ports: 
+    #         - 4000:4000
+    #     environment: 
+    #         - APP_NAME=nodeapp
     
-    postgres:
-        image: postgres:latest
-        container_name: postgres_container
-        restart: always
-        expose:
-            - "5432" # expose to outside world
-        ports: 
-            - "5432:5432"
-        environment: 
-            - POSTGRES_PASSWORD=password
-        volumes: 
-            - "./db/data:/var/lib/postgres/data"
-            - "./db/init:/docker-entrypoint-initdb.d"
+    # postgres:
+    #     image: postgres:latest
+    #     container_name: postgres_container
+    #     restart: always
+    #     expose:
+    #         - "5432" # expose to outside world
+    #     ports: 
+    #         - "5432:5432"
+    #     environment: 
+    #         - POSTGRES_PASSWORD=password
+    #     volumes: 
+    #         - "./db/data:/var/lib/postgres/data"
+    #         - "./db/init:/docker-entrypoint-initdb.d"
 
-    mysql:
-        image: mysql:latest
-        container_name: mysql_container
-        restart: always
-        environment: 
-            - MYSQL_ROOT_PASSWORD=password
-            - MYSQL_DATABASE=food
-        ports:
-            - "3306:3306"
-        volumes:
-            - "./mysql:/var/lib/mysql:rw"
+    # mysql:
+    #     image: mysql:latest
+    #     container_name: mysql_container
+    #     restart: always
+    #     environment: 
+    #         - MYSQL_ROOT_PASSWORD=password
+    #         - MYSQL_DATABASE=food
+    #     ports:
+    #         - "3306:3306"
+    #     volumes:
+    #         - "./mysql:/var/lib/mysql:rw"
 
-    grafana:
-        image: grafana/grafana:latest
-        container_name: grafana_container
-        restart: always
-        env_file:
-            - './grafana/.env.grafana'
-        user: "0"
-        ports: 
-            - 3000:3000
+    # grafana:
+    #     image: grafana/grafana:latest
+    #     container_name: grafana_container
+    #     restart: always
+    #     env_file:
+    #         - './grafana/.env.grafana'
+    #     user: "0"
+    #     ports: 
+    #         - 3000:3000
+    #     volumes: 
+    #         - "$PWD/data:/var/lib/grafana"
