@@ -1,0 +1,19 @@
+version: '3.7'
+services:
+    gitlab-mac:
+        image: gitlab/gitlab-ce:latest
+        container_name: gitlab-mac-container
+        restart: unless-stopped
+        volumes:
+            - '$GITLAB_HOME/config:/etc/gitlab'
+            - '$GITLAB_HOME/logs:/var/log/gitlab'
+            - '$GITLAB_HOME/data:/var/opt/gitlab'
+        privileged: true
+        environment:
+            GITLAB_OMNIBUS_CONFIG: |
+                external_url 'http://localhost:80'
+                # Add any other gitlab.rb configuration below
+        ports:
+            - '8888:80'
+            - '8443:443'
+            - '8822:22'
